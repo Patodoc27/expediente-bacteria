@@ -46,7 +46,13 @@ window.initPano=function(host,imgSrc,zones,onPick){
       tx=mx-(mx-tx)*k; ty=my-(my-ty)*k; s*=k; clamp(); apply(); }
     tchs[a]=p1.a; tchs[b]=p1.b; },{passive:false});
   box.addEventListener("touchend",e=>{ for(const t of e.changedTouches) delete tchs[t.identifier]; },{passive:true});
-  fit();
+  /* Ajuste inicial cuando el visor ya tiene tamaño real (puede crearse antes de que el paso se dibuje) */
+  let userMoved=false;
+  box.addEventListener("wheel",()=>{userMoved=true;},{passive:true});
+  box.addEventListener("pointermove",()=>{ if(drag&&drag.moved) userMoved=true; });
+  const safeFit=()=>{ if(box.clientWidth>0&&box.clientHeight>0&&!userMoved) fit(); };
+  safeFit(); requestAnimationFrame(safeFit); img.addEventListener("load",safeFit);
+  if(window.ResizeObserver) new ResizeObserver(safeFit).observe(box);
   return {
     mark(id,cls,txt){ const z=zones.find(z=>z.id===id); if(!z) return;
       const m=document.createElement("div"); m.className="opmark "+cls;
