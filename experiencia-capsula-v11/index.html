@@ -1709,17 +1709,27 @@ BIND.simbac=()=>{
   let setLabels=null, labelNow=null;
   function showP(){ if(idx>=PROBLEMS.length){ $("pnum").textContent="COMPLETO"; $("ptxt").textContent="La acusada llegó viva y se instaló. Ninguna bacteria elige sus piezas: las que tienen piezas útiles para su ambiente sobreviven y se multiplican."; markOK("simbac"); return; }
     $("pnum").textContent=`OBSTÁCULO ${idx+1} DE ${PROBLEMS.length}`; $("ptxt").textContent=PROBLEMS[idx].t; }
+  let miss=0, hintFn=null;
+  const WHERE={pared:"la franja marrón clara que rodea todo el borde de la célula. Toca el borde de arriba o de abajo",
+    flagelo:"el filamento azul largo que sale del extremo derecho",
+    pili:"los pelitos rosados que rodean toda la célula",
+    capsula:"la capa azul que cubre el extremo izquierdo, por fuera de la pared",
+    plasmido:"el anillo rojo pequeño, dentro del citoplasma, hacia la derecha"};
   function pick(p){
     if(idx>=PROBLEMS.length) return;
     const P=PROBLEMS[idx];
-    if(p===P.p){ ficha.className="ficha show"; ficha.innerHTML="✔ "+P.f;
-      found.push(p); labelNow(p); $("found").innerHTML=found.map(x=>`<span>${PART_NAME[x]}</span>`).join(""); idx++; showP(); }
-    else if(BASIC.includes(p)){ EXP.s2.viajeErr=(EXP.s2.viajeErr||0)+1; saveExp(); ficha.className="ficha show warn"; ficha.innerHTML=`Tocaste ${PART_NAME[p]}: ya la conocés de la etapa 1 (${PART_SHORT[p]}). Busca una pieza nueva.`; }
-    else { EXP.s2.viajeErr=(EXP.s2.viajeErr||0)+1; saveExp(); ficha.className="ficha show warn"; ficha.innerHTML=`Tocaste ${PART_NAME[p]}: ${PART_SHORT[p]}. No la salva de este obstáculo; sigue buscando.`; }
+    if(p===P.p){ miss=0; if(hintFn) hintFn(null); ficha.className="ficha show"; ficha.innerHTML="✔ "+P.f;
+      found.push(p); labelNow(p); $("found").innerHTML=found.map(x=>`<span>${PART_NAME[x]}</span>`).join(""); idx++; showP(); return; }
+    miss++; EXP.s2.viajeErr=(EXP.s2.viajeErr||0)+1; saveExp(); ficha.className="ficha show warn";
+    if(P.p==="pared"&&p==="membrana") ficha.innerHTML=`Tocaste la membrana plasmática: controla qué entra y qué sale, pero es una capa finísima y sola reventaría con tanta agua. Busca la capa resistente que la rodea por fuera.`;
+    else if(BASIC.includes(p)) ficha.innerHTML=`Tocaste ${PART_NAME[p]}: ya conocés esta pieza de la etapa 1 (${PART_SHORT[p]}). Busca una pieza nueva.`;
+    else ficha.innerHTML=`Tocaste ${PART_NAME[p]}: ${PART_SHORT[p]}. No la salva de este obstáculo; sigue buscando.`;
+    if(miss>=2){ ficha.innerHTML+=`<br><b>Pista:</b> la pieza que buscás es ${WHERE[P.p]}. Ahora brilla en el modelo.`; if(hintFn) hintFn(P.p); }
   }
   if(use3d){
     $("bac2d").style.display="none"; $("bac3dhint").textContent="Rueda o pellizco para acercar · arrastra para recorrerla · toca la pieza que resuelve cada problema";
-    setLabels=initBacteriaZoom($("bac3d"),pick).setFound;
+    const api=initBacteriaZoom($("bac3d"),pick,()=>idx<PROBLEMS.length?PROBLEMS[idx].p:null);
+    setLabels=api.setFound; hintFn=api.hint;
     labelNow=p=>setLabels(found);
   } else {
     $("bac3d").style.display="none";
