@@ -926,7 +926,7 @@ STEPS.s1=[
   <div class="row" id="conf"><button type="button" class="pill" data-c="poco">Poco seguro</button><button type="button" class="pill" data-c="bastante">Bastante seguro</button><button type="button" class="pill" data-c="muy">Muy seguro</button></div>
   <div class="fb ok" id="fb-teoria">Teoría registrada en la bitácora. La vas a volver a mirar cuando lleguen pruebas nuevas.</div>`}},
 
-{tag:"LLAVE 1",title:"Algo que nadie vio",doc:"Recorren cuatro aumentos y calculan con el medidor y la regla de tres simple cuántas bacterias de 2 µm entran en 1 mm. Clave: 2 µm ⟶ 1 bacteria; 1.000 µm ⟶ x; x = 1.000 × 1 ÷ 2 = 500. Es la única actividad con cálculo de la cápsula. Cierra con una respuesta escrita: no se ven porque son microscópicas.",min:6,html:`<p>Si nadie vio al responsable, hay una posibilidad incómoda: que sea demasiado pequeño para verse. Vamos a mirar la mano del tío Ramón, la que llegó del taller y tocó la comida, con instrumentos cada vez más potentes. Ojo: no es el mismo instrumento en cada nivel.</p>`,
+{tag:"LLAVE 1",title:"Algo que nadie vio",doc:"Recorren cuatro aumentos y analizan cuatro afirmaciones a partir de lo observado y de los datos de tamaño. Clave: la lupa no alcanza (2 µm × 10 = 20 µm, por debajo de los 100 µm que distingue el ojo), los datos la contradicen; los colores de la imagen electrónica son agregados, la contradicen; no haberlas visto no prueba que no estuvieran, la apoyan; en el óptico se ven células con núcleo y las bacterias apenas como puntitos, son mucho más chicas que las células de la piel, la apoyan. Cierra con una respuesta escrita: no se ven porque son microscópicas.",min:6,html:`<p>Si nadie vio al responsable, hay una posibilidad incómoda: que sea demasiado pequeño para verse. Vamos a mirar la mano del tío Ramón, la que llegó del taller y tocó la comida, con instrumentos cada vez más potentes. Ojo: no es el mismo instrumento en cada nivel.</p>`,
  act:{id:"micro",html:()=>`
   <p class="consigna">Mueve el control de aumento nivel por nivel. En cada uno, lee qué instrumento se usa y qué se ve.</p>
   <div class="scopewrap">
@@ -940,11 +940,13 @@ STEPS.s1=[
   <div id="micro-q" style="display:none">
     <div class="hilo" style="margin-top:6px">Esas formitas sobre las células de la piel tienen nombre: son <b style="color:var(--red)">bacterias</b>. Algunas tienen forma de bastón (<i>bacilos</i>), otras de esfera (<i>cocos</i>) y otras de espiral. ¿Qué tan chicas son?</div>
     <div class="prose wide"><p>Para medir cosas tan pequeñas se usa el <span class="defbox">micrómetro</span> (se escribe µm): la milésima parte de un milímetro. En 1 mm, que es el grosor de la punta de un lápiz, entran 1.000 µm. Cada bacteria de la mano de Ramón mide 2 µm de largo.</p></div>
-    <div class="medidor">${medidorSVG()}<p>Este es el <b>medidor</b>: una regla que marca de 2 en 2 µm. Cuenta en el dibujo: en 10 µm entran 5 bacterias. Para saber cuántas entran en 1.000 µm no hace falta contarlas una por una: se calcula con una <b>regla de tres simple</b>.</p></div>
-    <div class="r3" id="r3"></div>
+    <div class="prose wide"><p>Para tener una idea: en un solo milímetro entrarían 500 bacterias como esas, puestas en fila. Y el ojo humano, sin ayuda, distingue como mucho objetos de una décima de milímetro, es decir, de unos 100 µm.</p></div>
+    <p class="consigna">Analiza lo que viste en los cuatro aumentos y los datos de arriba. Decide si cada afirmación está apoyada por los datos o si los datos la contradicen. Si alguna queda marcada en rojo, lee la pista y vuelve a mirar el recorrido.</p>
+    <div id="anrows"></div>
+    <button type="button" class="btn sm" id="btn-an">Comprobar</button><div class="fb" id="fb-an"></div>
   </div>
   <div class="after" id="after-micro"><div class="prose wide">
-   <p>Quinientas bacterias en un solo milímetro. Se dice que son <b>microscópicas</b>, una palabra que viene del griego <i>mikrós</i>, “pequeño”, y <i>skopéin</i>, “observar”: lo que solo se observa con un instrumento que agranda lo pequeño.</p></div>
+   <p>Por eso se dice que las bacterias son <b>microscópicas</b>, una palabra que viene del griego <i>mikrós</i>, “pequeño”, y <i>skopéin</i>, “observar”: lo que solo se observa con un instrumento que agranda lo pequeño.</p></div>
    <p class="consigna">Responde en una línea: ¿por qué nadie vio a las bacterias sobre la mesa del asado?</p>
    <textarea id="microtxt" placeholder="Nadie las vio porque…" style="min-height:64px"></textarea>
    <div class="fb ok" id="fb-micro">Registrado en la bitácora.</div></div>`}},
@@ -1198,6 +1200,12 @@ const FID_ROOTS=[
  {r:"eu-",w:"eucariota",a:"verdadero",o:["verdadero","sin","célula"]},
  {r:"káryon",w:"procariota y eucariota",a:"núcleo",o:["núcleo","célula","dentro"]}];
 const FID_ID=[];
+const AN=[
+ {w:"“Con la lupa ya tendrían que verse las bacterias, porque agranda 10 veces.”",a:"no",h:"Pista: una bacteria mide 2 µm. Piensa cuánto mediría agrandada 10 veces y compáralo con lo más chico que distingue el ojo."},
+ {w:"“En la imagen del microscopio electrónico, las bacterias son celestes y violetas porque ese es su color real.”",a:"no",h:"Pista: vuelve a leer cómo salen las imágenes de ese instrumento."},
+ {w:"“Que nadie haya visto bacterias en la mano de Ramón no prueba que no las tuviera.”",a:"si",h:"Pista: compara lo que se ve a simple vista con lo que aparece a ×5.000 en la misma mano."},
+ {w:"“Las bacterias son mucho más chicas que las células de la piel.”",a:"si",h:"Pista: mira qué se distingue a ×100 en las células de la piel y cómo se ven ahí las bacterias."},
+];
 const CMP=[
  {w:"Membrana plasmática",a:"esta",h:"Es la capa violeta finita que rodea el interior, por dentro de la pared celular."},
  {w:"Citoplasma",a:"esta",h:"Es todo el interior anaranjado de la célula procariota."},
@@ -1418,40 +1426,21 @@ BIND.micro=()=>{
   const check=()=>{ if(ta.value.trim().length>=10){ EXP.s1.microTxt=ta.value.trim(); saveExp(); $("fb-micro").classList.add("show"); markOK("micro"); } };
   function buildR3(){
     if(built) return; built=true;
-    $("r3").innerHTML=`<div class="r3h">REGLA DE TRES SIMPLE</div>
-     <p class="r3p"><b>Paso 1 · Ordena los datos.</b> En cada fila, a la izquierda van los micrómetros y a la derecha, las bacterias que entran en ese largo. Arriba va lo que ya sabés (cuánto mide una bacteria); abajo, lo que querés averiguar (cuántas entran en 1 mm, que son 1.000 µm).</p>
-     <div class="r3grid">
-      <input id="r3a1" inputmode="decimal" aria-label="micrómetros, primera fila"><span>µm</span><span class="r3ar">⟶</span><input id="r3b1" inputmode="decimal" aria-label="bacterias, primera fila"><span>bacteria</span>
-      <input id="r3a2" inputmode="decimal" aria-label="micrómetros, segunda fila"><span>µm</span><span class="r3ar">⟶</span><span class="r3x">x</span><span>bacterias</span>
-     </div>
-     <p class="small">La x es el número que todavía no conocemos.</p>
-     <button type="button" class="btn sm" id="r3c1">Comprobar paso 1</button><div class="fb" id="r3f1"></div>
-     <div id="r3s2" style="display:none">
-      <p class="r3p"><b>Paso 2 · Multiplica en cruz y divide.</b> Se multiplican los dos números <span class="r3m">marcados en naranja</span> (los que están en diagonal, sin la x) y el resultado se divide por el número <span class="r3d">marcado en violeta</span> (el que está en diagonal con la x). Escribe la cuenta:</p>
-      <div class="r3f">x = <input id="r3m1" inputmode="decimal" aria-label="primer factor"> × <input id="r3m2" inputmode="decimal" aria-label="segundo factor"> ÷ <input id="r3dv" inputmode="decimal" aria-label="divisor"></div>
-      <button type="button" class="btn sm" id="r3c2">Comprobar paso 2</button><div class="fb" id="r3f2"></div>
-     </div>
-     <div id="r3s3" style="display:none">
-      <p class="r3p"><b>Paso 3 · Resuelve.</b> Primero la multiplicación: 1.000 × 1 = 1.000. Después la división:</p>
-      <div class="r3f">x = 1.000 ÷ 2 = <input id="r3res" inputmode="decimal" aria-label="resultado"> bacterias</div>
-      <button type="button" class="btn sm" id="r3c3">Comprobar resultado</button><div class="fb" id="r3f3"></div>
-     </div>`;
-    const fb=(id,ok,x)=>{ const f=$(id); f.className="fb show "+(ok?"ok":"no"); f.innerHTML=x; if(!ok&&!EXP.s1.microOK){ EXP.s1.microTries=(EXP.s1.microTries||0)+1; saveExp(); } };
-    const step2=()=>{ $("r3s2").style.display="block"; ["r3a2","r3b1"].forEach(i=>$(i).classList.add("m")); $("r3a1").classList.add("d"); };
-    const step3=()=>{ $("r3s3").style.display="block"; };
-    const done=()=>{ EXP.s1.microOK=true; saveExp(); fb("r3f3",true,"✔ x = 500 bacterias. Compara con el medidor: si en 10 µm entran 5, en 1.000 µm entran 100 veces más."); $("after-micro").classList.add("show"); ta.oninput=check; check(); };
-    $("r3c1").onclick=()=>{ const a1=num($("r3a1").value), b1=num($("r3b1").value), a2=num($("r3a2").value); const h=[];
-      if(a1!==2) h.push("Cada bacteria mide 2 µm: ese dato va arriba, a la izquierda.");
-      if(b1!==1) h.push("En la primera fila hablamos de una sola bacteria.");
-      if(a2!==1000) h.push("1 mm tiene 1.000 µm: ese dato va abajo, a la izquierda.");
-      if(h.length){ fb("r3f1",false,h.join(" ")); return; }
-      fb("r3f1",true,"✔ Datos ordenados: 2 µm ⟶ 1 bacteria; 1.000 µm ⟶ x bacterias. Si hay más micrómetros, entran más bacterias."); step2(); };
-    $("r3c2").onclick=()=>{ const m=[num($("r3m1").value),num($("r3m2").value)].sort((a,b)=>a-b), d=num($("r3dv").value);
-      if(m[0]===1&&m[1]===1000&&d===2){ fb("r3f2",true,"✔ x = 1.000 × 1 ÷ 2"); step3(); }
-      else if(d!==2) fb("r3f2",false,"Se divide por el número marcado en violeta.");
-      else fb("r3f2",false,"Se multiplican los dos números marcados en naranja: el de abajo a la izquierda y el de arriba a la derecha."); };
-    $("r3c3").onclick=()=>{ if(num($("r3res").value)===500) done(); else fb("r3f3",false,"¿Cuántas veces entra el 2 en 1.000? Es la mitad de 1.000."); };
-    if(EXP.s1.microOK||EXP.ok.micro||DOC()){ $("r3a1").value="2"; $("r3b1").value="1"; $("r3a2").value="1.000"; step2(); $("r3m1").value="1.000"; $("r3m2").value="1"; $("r3dv").value="2"; step3(); $("r3res").value="500"; if(!DOC()) done(); else ta.oninput=check; }
+    const box=$("anrows"), pick={}, ORD=shuffle(AN.map((_,i)=>i));
+    ORD.forEach(i=>{ const c=AN[i]; const r=document.createElement("div"); r.className="mrow"; r.dataset.i=i;
+      r.innerHTML=`<span class="word">${c.w}</span>${[["si","Los datos la apoyan"],["no","Los datos la contradicen"]].map(([v,t])=>`<button type="button" class="pill" data-v="${v}">${t}</button>`).join("")}<span class="hint">${c.h}</span>`;
+      r.querySelectorAll(".pill").forEach(b=>b.onclick=()=>{ pick[i]=b.dataset.v; r.querySelectorAll(".pill").forEach(x=>x.classList.toggle("sel",x===b)); r.classList.remove("wrong","correct"); });
+      box.appendChild(r); });
+    const done=()=>{ EXP.s1.microOK=true; saveExp(); $("after-micro").classList.add("show"); ta.oninput=check; check(); };
+    $("btn-an").onclick=()=>{
+      let bad=0, miss=0;
+      box.querySelectorAll(".mrow").forEach(r=>{ const i=+r.dataset.i; r.classList.remove("wrong","correct"); if(!pick[i]){miss++;return;} if(pick[i]===AN[i].a) r.classList.add("correct"); else { r.classList.add("wrong"); bad++; } });
+      const f=$("fb-an");
+      if(miss){ f.textContent=`Faltan ${miss} afirmaciones por decidir.`; f.className="fb no show"; return; }
+      if(bad){ if(!EXP.s1.microOK){ EXP.s1.microTries=(EXP.s1.microTries||0)+1; saveExp(); } f.textContent=`Hay ${bad} para revisar: lee la pista y vuelve a mirar el aumento que corresponde.`; f.className="fb no show"; return; }
+      f.textContent="✔ Análisis correcto."; f.className="fb ok show"; done();
+    };
+    if(EXP.s1.microOK||EXP.ok.micro||DOC()){ box.querySelectorAll(".mrow").forEach(r=>{ r.querySelector(`.pill[data-v="${AN[+r.dataset.i].a}"]`).click(); r.classList.add("correct"); }); if(!DOC()) done(); else ta.oninput=check; }
   }
   draw(); if(EXP.s1.microOK||EXP.ok.micro){ z.value=3; draw(); }
 };
@@ -1987,7 +1976,7 @@ function bitData(){
   return [
    {e:"ETAPA 1 · QUIÉN ES",k:"s1",secs:[
     {h:"Primera teoría",it:[["d","Sospechoso",SUSP_NAME[s1.teoria]],["d","Seguridad",CONF_NAME[s1.conf]],["r","Por qué",s1.teoriaTxt]]},
-    {h:"Algo que nadie vio",it:[["d","Bacterias de 2 µm que entran en 1 mm (regla de tres)",s1.microOK||ok.micro?"500"+tries(s1.microTries):""],["r","¿Por qué nadie vio a las bacterias en la mesa?",s1.microTxt]]},
+    {h:"Algo que nadie vio",it:[["d","Análisis de los cuatro aumentos (4 afirmaciones)",s1.microOK||ok.micro?"Completo"+tries(s1.microTries):""],["r","¿Por qué nadie vio a las bacterias en la mesa?",s1.microTxt]]},
     {h:"Idea previa: ¿todas las bacterias enferman?",it:[["d","Mi idea",IDEA_NAME[s1.idea]],["r","Por qué",s1.ideaTxt]]},
     {h:"El fichero del laboratorio",it:[["d","Bacterias clasificadas",Object.keys(s1.gal||{}).length?Object.keys(s1.gal).length+" de 12; "+(s1.galFirst||0)+" bien al primer intento":""]]},
     {h:"Las aliadas: a qué ayudan las bacterias beneficiosas",it:[["d","Clasificación",ali?ali+tries(s1.aliadasErr):""],["r","Las bacterias beneficiosas ayudan a las personas porque…",s1.aliadasTxt]]},
