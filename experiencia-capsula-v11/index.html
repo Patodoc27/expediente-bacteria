@@ -710,7 +710,7 @@ $("btn-switch").onclick=()=>{ document.body.classList.remove("docente");  try{ c
 $("btn-hub").onclick=()=>{ leaveSession(); renderHub(); show("scr-hub"); };
 
 const SESSIONS=[
-  {key:"s1",num:"ETAPA 1",name:"Quién es",desc:"La acusada: una sola célula, sin núcleo, microscópica. El fichero de doce bacterias, sus aliadas y la otra cara de las que enferman.",art:"ses-sospecha.webp"},
+  {key:"s1",num:"ETAPA 1",name:"Quién es",desc:"La acusada: una sola célula, sin núcleo, microscópica. El fichero de doce bacterias, dónde viven y la otra cara de las que enferman.",art:"ses-sospecha.webp"},
   {key:"s2",num:"ETAPA 2",name:"Cómo funciona",desc:"El deseo de la abuela, las piezas de todas y de algunas bacterias, y qué tan rápido se multiplica la acusada.",art:"ses-dentro.webp"},
   {key:"s3",num:"ETAPA 3",name:"Qué pasó",desc:"La tabla de pruebas, el veredicto del laboratorio y un operativo de inspección.",art:"ses-veredicto.webp"},
 ];
@@ -926,7 +926,7 @@ STEPS.s1=[
   <div class="row" id="conf"><button type="button" class="pill" data-c="poco">Poco seguro</button><button type="button" class="pill" data-c="bastante">Bastante seguro</button><button type="button" class="pill" data-c="muy">Muy seguro</button></div>
   <div class="fb ok" id="fb-teoria">Teoría registrada en la bitácora. La vas a volver a mirar cuando lleguen pruebas nuevas.</div>`}},
 
-{tag:"LLAVE 1",title:"Algo que nadie vio",doc:"Recorren cuatro aumentos y analizan cuatro afirmaciones a partir de lo observado y de los datos de tamaño. Clave: la lupa no alcanza (2 µm × 10 = 20 µm, por debajo de los 100 µm que distingue el ojo), los datos la contradicen; los colores de la imagen electrónica son agregados, la contradicen; no haberlas visto no prueba que no estuvieran, la apoyan; en el óptico se ven células con núcleo y las bacterias apenas como puntitos, son mucho más chicas que las células de la piel, la apoyan. Cierra con una respuesta escrita: no se ven porque son microscópicas.",min:6,html:`<p>Si nadie vio al responsable, hay una posibilidad incómoda: que sea demasiado pequeño para verse. Vamos a mirar la mano del tío Ramón, la que llegó del taller y tocó la comida, con instrumentos cada vez más potentes. Ojo: no es el mismo instrumento en cada nivel.</p>`,
+{tag:"LLAVE 1",title:"Algo que nadie vio",doc:"Recorren cuatro aumentos y analizan cuatro afirmaciones a partir de lo observado y de los datos de tamaño. Clave: la lupa no alcanza (2 µm × 10 = 20 µm, por debajo de los 100 µm que distingue el ojo), los datos la contradicen; los colores de la imagen electrónica son agregados, la contradicen; no haberlas visto no prueba que no estuvieran, la apoyan; a ×5.000 hay bastones y esferas en racimo, así que no todas tienen forma de bastón, la contradicen. Cierra con una respuesta escrita que registra para la lámina el tamaño (microscópicas) y las formas (bacilos, cocos, espirales).",min:6,html:`<p>Si nadie vio al responsable, hay una posibilidad incómoda: que sea demasiado pequeño para verse. Vamos a mirar la mano del tío Ramón, la que llegó del taller y tocó la comida, con instrumentos cada vez más potentes. Ojo: no es el mismo instrumento en cada nivel.</p>`,
  act:{id:"micro",html:()=>`
   <p class="consigna">Mueve el control de aumento nivel por nivel. En cada uno, lee qué instrumento se usa y qué se ve.</p>
   <div class="scopewrap">
@@ -947,8 +947,8 @@ STEPS.s1=[
   </div>
   <div class="after" id="after-micro"><div class="prose wide">
    <p>Por eso se dice que las bacterias son <b>microscópicas</b>, una palabra que viene del griego <i>mikrós</i>, “pequeño”, y <i>skopéin</i>, “observar”: lo que solo se observa con un instrumento que agranda lo pequeño.</p></div>
-   <p class="consigna">Responde en una línea: ¿por qué nadie vio a las bacterias sobre la mesa del asado?</p>
-   <textarea id="microtxt" placeholder="Nadie las vio porque…" style="min-height:64px"></textarea>
+   <p class="consigna">Responde en dos o tres líneas: ¿por qué nadie vio a las bacterias sobre la mesa del asado, y qué formas tenían las que aparecieron en la mano de Ramón?</p>
+   <textarea id="microtxt" placeholder="Nadie las vio porque… Las de la mano de Ramón tenían forma de…" style="min-height:76px"></textarea>
    <div class="fb ok" id="fb-micro">Registrado en la bitácora.</div></div>`}},
 
 {tag:"IDEA PREVIA",title:"¿Todas las bacterias enferman?",doc:"Idea previa central de la secuencia. Eligen una postura frente a la frase de la abuela y la justifican. No se corrige acá: se pone a prueba en los tres pasos siguientes y se revisa al final de “La otra cara”.",min:2,html:`
@@ -976,16 +976,21 @@ STEPS.s1=[
    </div>
   </div>`}},
 
-{tag:"LLAVE 1",title:"Las aliadas",doc:"Extracción de información sobre las seis bacterias beneficiosas. Clave: alimentos, <i>Lactobacillus</i>; medicamentos, <i>Escherichia coli</i> comunes (insulina) y <i>Streptomyces</i> (antibióticos); plantas y suelo, <i>Rhizobium</i>, <i>Nitrosomonas</i> y <i>Nitrobacter</i>, <i>Nostoc</i>. Cierra con una oración propia para la bitácora.",min:4,html:`<p>La abuela come su yogur todos los días sin saber que lo fabrica una bacteria. Las seis bacterias beneficiosas del fichero trabajan para las personas de maneras muy distintas.</p>`,
- act:{id:"aliadas",tag:"BITÁCORA",html:`
-  <p class="consigna">Lee qué hace cada bacteria beneficiosa y decide a qué ayuda: a los alimentos, a los medicamentos o a las plantas y el suelo. Después toca “Comprobar”.</p>
-  <div id="alirows"></div>
-  <button type="button" class="btn sm" id="btn-ali">Comprobar</button>
-  <div class="fb" id="fb-ali"></div>
-  <div class="after" id="after-ali">
-   <p class="consigna">Completa la oración para tu bitácora con un ejemplo del fichero.</p>
-   <textarea id="alitxt" placeholder="Las bacterias beneficiosas ayudan a las personas porque… Por ejemplo, …" style="min-height:76px"></textarea>
-   <div class="fb ok" id="fb-ali2">Registrado en la bitácora.</div>
+{tag:"LLAVE 1",title:"Dónde viven",doc:"Extracción de información: ubican las doce bacterias del fichero en uno o más ambientes. Clave: suelo, agua y plantas, <i>Rhizobium</i>, <i>Nitrosomonas</i> y <i>Nitrobacter</i>, <i>Streptomyces</i>, <i>Nostoc</i> y <i>Vibrio cholerae</i> (también alimentos); cuerpo de las personas, <i>Mycobacterium tuberculosis</i>, <i>Bordetella pertussis</i>, <i>Staphylococcus aureus</i>, <i>Streptococcus mutans</i>, <i>Lactobacillus</i> (también alimentos) y <i>Escherichia coli</i> (también animales); animales y alimentos, <i>Salmonella</i>. Idea a rescatar: viven en casi todos los ambientes y una misma bacteria puede vivir en más de uno. Después leen que la bacteria es un sistema abierto y escriben qué toma la <i>Salmonella</i> de la ensalada (nutrientes) y qué devuelve (desechos y calor, energía térmica).",min:5,html:`<p>Las bacterias estaban en la mano de Ramón y nadie las vio. ¿En qué otros lugares estarán? Cada ficha del laboratorio dice dónde vive esa bacteria.</p>`,
+ act:{id:"habitat",tag:"BITÁCORA",html:`
+  <p class="consigna">Lee dónde vive cada bacteria y marca todos los ambientes que correspondan: algunas viven en más de uno. Después toca “Comprobar”.</p>
+  <div id="habrows"></div>
+  <button type="button" class="btn sm" id="btn-hab">Comprobar</button>
+  <div class="fb" id="fb-hab"></div>
+  <div class="after" id="after-hab">
+   <div class="prose wide">
+    <p>Suelo, agua, raíces, boca, piel, intestino, animales y alimentos: las bacterias viven en casi todos los ambientes de la Tierra, y una misma bacteria puede vivir en más de un lugar. Por eso estaban en la mano de Ramón aunque nadie las viera.</p>
+    <p>Estén donde estén, cada bacteria es un ser vivo y, como todo ser vivo, es un <b>sistema abierto</b>: intercambia materia y energía con el ambiente. Toma del lugar donde vive los nutrientes que necesita para crecer y obtener energía, y le devuelve desechos. Parte de esa energía sale de la bacteria como <b>calor</b>, es decir, como energía térmica.</p>
+    <p>La mayoría de las bacterias, como la <i>Salmonella</i>, toma su alimento de lo que la rodea. <i>Nostoc</i>, en cambio, fabrica su propio alimento con la luz del Sol: hace fotosíntesis, como las plantas.</p>
+   </div>
+   <p class="consigna">Piensa en la <i>Salmonella</i> dentro de la ensalada rusa y escribe en dos o tres líneas qué toma del ambiente y qué le devuelve.</p>
+   <textarea id="habtxt" placeholder="De la ensalada toma… y le devuelve…" style="min-height:76px"></textarea>
+   <div class="fb ok" id="fb-hab2">Registrado en la bitácora.</div>
   </div>`}},
 
 {tag:"LLAVE 1",title:"La otra cara",doc:"Lectura de seis fichas ampliadas de las bacterias que causan enfermedad y completamiento de una oración por ficha. Clave: herida; mucho azúcar y poco cepillado; una vacuna; devuelve nutrientes al agua; nunca se enferma; la vacuna contra la tos convulsa. Idea central: ninguna de ellas enferma siempre y en todo lugar; que cause enfermedad depende de a dónde llega, de cuántas son y de las defensas de la persona. Cierra con la revisión escrita de la idea previa.",min:6,html:`<p>En el cuadro, seis bacterias quedaron del lado de las que causan enfermedad. Pero el laboratorio mandó también la otra cara de esas fichas: dónde viven sin hacer daño y qué más hacen.</p>`,
@@ -1004,7 +1009,7 @@ STEPS.s1=[
    <div class="fb ok" id="fb-irev">Registrado. Doce bacterias muy distintas por fuera. ¿Qué son, en realidad, por dentro?</div>
   </div>`}},
 
-{tag:"LLAVE 1",title:"La acusada de cerca",doc:"Comparan la célula procariota con la célula eucariota animal. Clave: están membrana plasmática, citoplasma, ribosomas y ADN; no están núcleo con envoltura ni mitocondrias. Cierra con una oración propia sobre la diferencia principal (el ADN no está encerrado en un núcleo). En este modo las respuestas aparecen ya marcadas.",min:5,html:`<p>En el fichero viste formas muy distintas: esferas en cadena o en racimo, bastones, comas con un flagelo, filamentos. Pero por dentro todas están armadas de manera parecida. A la izquierda tenés una célula que ya conocés: la célula eucariota animal. A la derecha, la célula de una bacteria, agrandada muchísimo. Se la llama <b>célula procariota</b>.</p>`,
+{tag:"LLAVE 1",title:"La acusada de cerca",doc:"Comparan la célula procariota con la célula eucariota animal. Clave: están membrana plasmática, citoplasma, ribosomas y ADN; no están núcleo con envoltura ni mitocondrias. Cierra con una oración propia sobre la diferencia principal (el ADN no está encerrado en un núcleo). La lectura final conecta con los niveles de organización: en la bacteria coinciden el nivel célula y el nivel organismo. En este modo las respuestas aparecen ya marcadas.",min:5,html:`<p>En el fichero viste formas muy distintas: esferas en cadena o en racimo, bastones, comas con un flagelo, filamentos. Pero por dentro todas están armadas de manera parecida. A la izquierda tenés una célula que ya conocés: la célula eucariota animal. A la derecha, la célula de una bacteria, agrandada muchísimo. Se la llama <b>célula procariota</b>.</p>`,
  act:{id:"comparar",html:`
   <div class="cmp"><figure><img src="assets/img/celula-animal.webp" alt="Diagrama rotulado de una célula eucariota animal"><figcaption>Célula eucariota animal</figcaption></figure><figure><img src="assets/img/celula-bacteriana.webp" alt="Diagrama rotulado de una célula procariota"><figcaption>Célula procariota (dibujo ampliado: en realidad es unas 10 veces más chica que la célula eucariota animal)</figcaption></figure></div>
   <div class="ref lee"><b>Antes de comparar, ten en cuenta:</b> la célula eucariota animal tiene membrana plasmática, citoplasma, núcleo con su envoltura, ADN guardado dentro del núcleo, ribosomas, que son pequeñas fábricas de proteínas, y mitocondrias, que liberan la energía de los nutrientes. El dibujo de la izquierda no rotula todas esas partes, pero están.</div>
@@ -1014,14 +1019,14 @@ STEPS.s1=[
   <div class="fb no" id="fb-cmp"></div>
   <div class="after" id="after-cmp"><div class="prose wide">
    <p>La célula procariota tiene membrana plasmática, citoplasma, ribosomas y ADN, igual que tus células. <b>Es una célula completa y viva.</b> Lo que no tiene es un núcleo con envoltura: su ADN, un anillo largo y plegado, está en contacto directo con el citoplasma, en una zona llamada <span class="defbox">nucleoide</span>. Por eso se llama <i>procariota</i>, del griego <i>pro-</i>, “antes”, y <i>káryon</i>, “núcleo”: una célula sin núcleo. Tampoco tiene mitocondrias, pero igual obtiene energía de los nutrientes, en su propia membrana.</p>
-   <p>Cada bacteria es además un <b>organismo unicelular</b>: esa única célula es el ser vivo completo, que se alimenta, crece y se reproduce sola. Ramón, en cambio, es <b>pluricelular</b>: su cuerpo está formado por billones de células que se reparten el trabajo.</p></div>
+   <p>Cada bacteria es además un <b>organismo unicelular</b>: esa única célula es el ser vivo completo, que se alimenta, crece y se reproduce sola. Ramón, en cambio, es <b>pluricelular</b>: su cuerpo está formado por billones de células que se reparten el trabajo. Por eso, en los niveles de organización, una bacteria ocupa a la vez el nivel célula y el nivel organismo: su única célula es todo el organismo.</p></div>
    <p class="consigna">Escribe para tu bitácora, en una oración, la diferencia principal entre la célula procariota y la célula eucariota animal.</p>
    <textarea id="diftxt" placeholder="La diferencia principal es que…" style="min-height:64px"></textarea>
    <div class="fb ok" id="fb-dif">Registrado en la bitácora.</div>
   </div>`}},
 
 {tag:"CIERRE",title:"Posible no es culpable",doc:"Síntesis de la etapa 1. Solo lectura.",min:1,img:"llave.webp",cap:"Primera llave",html:`
- <p>Primera llave conseguida: ya sabés <b>quién es</b> la acusada. Es un organismo <b>unicelular</b>, una sola <b>célula procariota</b>, tan <b>microscópica</b> que 500 puestas en fila entran en un milímetro.</p>
+ <p>Primera llave conseguida: ya sabés <b>quién es</b> la acusada. Es un organismo <b>unicelular</b>, una sola <b>célula procariota</b>, tan <b>microscópica</b> que 500 puestas en fila entran en un milímetro, y vive en casi todos los ambientes, intercambiando materia y energía con ellos.</p>
  <p>La idea de la abuela no resistió la prueba: hay bacterias aliadas, y hasta las que causan enfermedad no lo hacen siempre ni en todo lugar. Que en el asado haya habido una bacteria capaz de enfermar es <b>posible</b>. Pero <b>posible no es culpable</b>: para acusar hacen falta pruebas.</p>
  <p class="hilo">Para la segunda llave falta entender <b>cómo funciona</b> la acusada. Y ese mismo lunes llega una prueba nueva.</p>`},
 ];
@@ -1045,7 +1050,7 @@ STEPS.s2=[
   <p class="consigna">Elige con el rayo las seis bacterias que vas a borrar y mira qué le pasa a la familia. Cada barra muestra una parte de la vida familiar, y el bienestar es el promedio de las cuatro. Tu objetivo: que el bienestar llegue al 100 %. Las tarjetas muestran solo la imagen y el nombre: lo que hace cada una lo tenés que recordar del fichero. Tenés 45 segundos.</p>
   <div class="pueblo" id="pueblo"></div>
   <div class="after" id="after-pueblo"><div class="prose wide">
-   <p>El rayo no distingue. Si se usa sobre las beneficiosas, la familia pierde la huerta, el yogur y los quesos, los antibióticos y la insulina, y hasta un poco de salud, porque el intestino se queda sin sus aliadas.</p>
+   <p>El rayo no distingue. Si se usa sobre las beneficiosas, la familia pierde la huerta, el yogur y los quesos, los antibióticos y la insulina.</p>
    <p><b>El problema nunca fueron “las bacterias”: fue no saber cuál es cuál.</b> Por eso, en lugar de eliminarlas, las personas cocinan bien los alimentos, potabilizan el agua, se vacunan, se lavan las manos y se cepillan los dientes: así frenan a las que pueden enfermar y dejan trabajar a las demás.</p></div>
    <p class="consigna">Responde en una o dos líneas: ¿por qué cumplir el deseo completo de la abuela dejaría peor a la familia?</p>
    <textarea id="deseotxt" placeholder="Si desaparecieran todas las bacterias…" style="min-height:70px"></textarea>
@@ -1061,13 +1066,9 @@ STEPS.s2=[
   <div class="ficha" id="ficha"></div>
   <div class="found" id="found"></div>`}},
 
-{tag:"SIMULADOR",title:"Piezas de todas, piezas de algunas",doc:"Extracción de información de las fichas del viaje. Clave: en todas, membrana plasmática, citoplasma, ribosomas y ADN; solo en algunas, flagelo, pili, cápsula y plásmido (la pared celular queda fuera: la tienen casi todas). Observación del fichero: tienen flagelo <i>Salmonella</i> (varios) y <i>Vibrio cholerae</i> (uno); no tienen <i>Staphylococcus aureus</i> ni <i>Lactobacillus</i>. Cierra con un ejemplo escrito.",min:4,html:`<p>La acusada del viaje tenía todas esas piezas. Pero las bacterias no son todas iguales por dentro: algunas piezas están en todas y otras, solo en algunas. La pared celular la tienen casi todas, aunque no todas, así que queda fuera de esta lista.</p>`,
+{tag:"SIMULADOR",title:"Piezas de todas, piezas de algunas",doc:"Las cuatro piezas comunes ya se trabajaron en “La acusada de cerca”; acá se pone a prueba en el fichero que flagelo, pili, cápsula y plásmido no están en todas. Observación del fichero: tienen flagelo <i>Salmonella</i> (varios) y <i>Vibrio cholerae</i> (uno); no tienen <i>Staphylococcus aureus</i> ni <i>Lactobacillus</i>. Cierra con un ejemplo escrito.",min:4,html:`<p>La acusada del viaje tenía todas esas piezas, pero las bacterias no son todas iguales. Membrana plasmática, citoplasma, ribosomas y ADN están en todas: son las piezas de toda célula. En cambio, las fichas del viaje dicen que el flagelo, los pili, la cápsula y el plásmido están solo en algunas. ¿Se puede comprobar con el fichero del laboratorio?</p>`,
  act:{id:"piezas",tag:"BITÁCORA",html:`
-  <p class="consigna">Usa lo que leíste en las fichas del viaje y decide, para cada pieza, si está en todas las bacterias o solo en algunas. Después toca “Comprobar”.</p>
-  <div id="pzrows"></div>
-  <button type="button" class="btn sm" id="btn-pz">Comprobar</button>
-  <div class="fb" id="fb-pz"></div>
-  <div class="after" id="after-pz">
+  <div>
    <p class="consigna">Compruébalo en el fichero: mira cada bacteria y decide si tiene flagelo, el filamento largo que gira como una hélice. Después toca “Comprobar”.</p>
    <div class="flagcards" id="flagcards"></div>
    <button type="button" class="btn sm" id="btn-flag">Comprobar</button>
@@ -1079,13 +1080,15 @@ STEPS.s2=[
    </div>
   </div>`}},
 
-{tag:"SIMULADOR",title:"Una se vuelve dos",doc:"Animación de la bipartición y predicción sin cálculo: cuántas bacterias había en la cucharada de Ramón a las 14 h, si se duplican cada 20 minutos. No se corrige acá; se contrasta en el paso siguiente (51.200).",min:2,html:`<p>Llegar al intestino e instalarse no alcanza: para enfermar a alguien hacen falta muchísimas bacterias. ¿Cómo hace una bacteria para ser muchas? No tiene padre y madre: como es unicelular, se parte en dos.</p>`,
+{tag:"SIMULADOR",title:"Una se vuelve dos",doc:"Animación de la bipartición, una explicación escrita (es unicelular: su única célula se divide en dos células hijas iguales, sin pareja) y predicción sin cálculo: cuántas bacterias había en la cucharada de Ramón a las 14 h, si se duplican cada 20 minutos. No se corrige acá; se contrasta en el paso siguiente (51.200).",min:2,html:`<p>Llegar al intestino e instalarse no alcanza: para enfermar a alguien hacen falta muchísimas bacterias. ¿Cómo hace una bacteria para ser muchas? No tiene padre y madre: como es unicelular, se parte en dos.</p>`,
  act:{id:"divide",html:`
   <p class="consigna">Toca “Ver la división” y sigue las etapas.</p>
   <div class="divwrap"><div id="divsvg">${divFrame(0)}</div><div class="dots" id="divdots"><i class="on"></i><i></i><i></i><i></i><i></i></div><div class="divcap" id="divcap">${DIV_CAP[0]}</div>
    <button type="button" class="btn sm" id="btn-div">Ver la división</button></div>
   <div class="after" id="after-div">
    <div class="prose wide"><p>Esta forma de reproducirse se llama <b>bipartición</b>: una célula se divide en dos células hijas iguales. Con calor, humedad y alimento, una bacteria como la <i>Salmonella</i> puede dividirse cada 20 minutos.</p></div>
+   <p class="consigna">Explica con tus palabras, en una o dos líneas, por qué una bacteria no necesita de otra para reproducirse.</p>
+   <textarea id="biptxt" placeholder="Una bacteria no necesita de otra porque…" style="min-height:64px"></textarea>
    <p class="consigna">Predice sin hacer cuentas: la ensalada rusa llegó a las 11 h con unas 100 bacterias en cada cucharada. Al sol, cada bacteria se divide en dos cada 20 minutos. ¿Cuántas crees que había en la cucharada que comió Ramón a las 14 h?</p>
    <div id="pred"></div>
   </div>`}},
@@ -1175,7 +1178,7 @@ STEPS.s3=[
 {tag:"CONSULTA",title:"Una consulta de la familia",doc:"Transferencia a una situación nueva: el antibiótico elimina también bacterias beneficiosas del intestino.",min:2,html:`<p>Con el caso resuelto, la abuela te hace una consulta sobre algo que le pasó hace un tiempo. Tenés un solo intento.</p>`,
  act:{id:"eval",html:`<div id="quiz"></div><div class="fb ok" id="fb-quiz"></div>`}},
 
-{tag:"CIERRE",title:"Caso cerrado",doc:"Metacognición (cuánto cambió su idea), mensaje escrito a la familia con un consejo de prevención, certificado y descarga de la bitácora en PDF. En este modo el PDF también se puede descargar para ver el formato.",min:3,img:"sello.webp",cap:"El sello del expediente",html:`<p>Tercera llave conseguida: ya sabés <b>qué pasó</b>. Las bacterias estuvieron siempre ahí: en la mano de Ramón, en la panza de toda la familia, en el yogur y en la huerta de la abuela. Una sola especie, en una ensalada que pasó horas al sol, alcanzó para enfermar a dos personas. El caso no buscaba demostrar que las bacterias son malas, sino aprender a mirarlas con pruebas.</p>`,
+{tag:"CIERRE",title:"Caso cerrado",doc:"Metacognición (cuánto cambió su idea), mensaje escrito a la familia con un consejo de prevención, certificado y descarga de la bitácora en PDF. En este modo el PDF también se puede descargar para ver el formato.",min:3,img:"sello.webp",cap:"El sello del expediente",html:`<p>Tercera llave conseguida: ya sabés <b>qué pasó</b>. Las bacterias estuvieron siempre ahí: en la mano de Ramón, en la panza de toda la familia, en el yogur y en la huerta de la abuela. Una sola especie, en una ensalada que pasó horas al sol, alcanzó para enfermar a dos personas. El caso no buscaba demostrar que las bacterias son malas, sino aprender a mirarlas con pruebas.</p><p>La primera página de tu bitácora reúne los conceptos del expediente junto con lo que escribiste en cada paso: es la base para armar tu lámina de visual thinking.</p>`,
  act:{id:"cierre",html:`
   <div class="hilo" id="idea-evol"></div>
   <p class="consigna">Elige la frase que mejor describe cómo cambió tu idea sobre las bacterias.</p>
@@ -1204,7 +1207,7 @@ const AN=[
  {w:"“Con la lupa ya tendrían que verse las bacterias, porque agranda 10 veces.”",a:"no",h:"Pista: una bacteria mide 2 µm. Piensa cuánto mediría agrandada 10 veces y compáralo con lo más chico que distingue el ojo."},
  {w:"“En la imagen del microscopio electrónico, las bacterias son celestes y violetas porque ese es su color real.”",a:"no",h:"Pista: vuelve a leer cómo salen las imágenes de ese instrumento."},
  {w:"“Que nadie haya visto bacterias en la mano de Ramón no prueba que no las tuviera.”",a:"si",h:"Pista: compara lo que se ve a simple vista con lo que aparece a ×5.000 en la misma mano."},
- {w:"“Las bacterias son mucho más chicas que las células de la piel.”",a:"si",h:"Pista: mira qué se distingue a ×100 en las células de la piel y cómo se ven ahí las bacterias."},
+ {w:"“Todas las bacterias tienen forma de bastón.”",a:"no",h:"Pista: vuelve a mirar la imagen a ×5.000: ¿todas las bacterias tienen la misma forma?"},
 ];
 const CMP=[
  {w:"Membrana plasmática",a:"esta",h:"Es la capa violeta finita que rodea el interior, por dentro de la pared celular."},
@@ -1216,7 +1219,7 @@ const CMP=[
 
 const TIPO_NAME={benef:"Beneficiosa",causa:"Causa enfermedad"};
 const GAL=[
- {k:"lacto",img:"bac-lactobacillus.webp",n:"Lactobacillus",t:"benef",d:"Yogur, algunos quesos y el intestino",i:"Participa en la elaboración del yogur y de otros alimentos fermentados."},
+ {k:"lacto",img:"bac-lactobacillus.webp",n:"Lactobacillus",t:"benef",d:"Yogur, algunos quesos y el intestino de las personas",i:"Participa en la elaboración del yogur y de otros alimentos fermentados."},
  {k:"ecoli",img:"bac-ecoli.webp",n:"Escherichia coli",sub:" (las comunes del intestino)",t:"benef",d:"Intestino de las personas y de los animales",i:"Habita en el intestino sin causar daño y se emplea en laboratorios para producir insulina, el medicamento que necesitan muchas personas con diabetes."},
  {k:"rhizo",img:"bac-rhizobium.webp",n:"Rhizobium",t:"benef",d:"Bolitas en las raíces del poroto y de la arveja",i:"Provee de nitrógeno a la planta, lo que reduce la necesidad de fertilizantes."},
  {k:"nitro",img:"bac-nitrificantes.webp",n:"Nitrosomonas y Nitrobacter",t:"benef",d:"Suelo",i:"Transforman sustancias con nitrógeno del suelo en nitrato, una forma de nitrógeno que las plantas pueden absorber."},
@@ -1372,8 +1375,8 @@ const EVAL=[
   o:["El antibiótico se convirtió en una bacteria nueva","El antibiótico también eliminó bacterias aliadas del intestino","Las bacterias de la muela viajaron hasta el intestino","El intestino fabricó bacterias nuevas por el antibiótico"],r:1,
   why:"Muchos antibióticos no distinguen bacterias aliadas de las que causan enfermedad: al eliminar parte de las bacterias beneficiosas del intestino, la digestión se altera. Las bacterias nuevas siempre vienen de otras bacterias."}];
 
-const ALI_NAME={alim:"Alimentos",medic:"Medicamentos",plant:"Plantas y suelo"};
-const ALI=[{k:"lacto",a:"alim"},{k:"ecoli",a:"medic"},{k:"rhizo",a:"plant"},{k:"nitro",a:"plant"},{k:"strepto",a:"medic"},{k:"nostoc",a:"plant"}];
+const HAB_NAME={suelo:"Suelo, agua o plantas",pers:"Personas",anim:"Animales",alim:"Alimentos"};
+const HAB={lacto:["pers","alim"],ecoli:["pers","anim"],rhizo:["suelo"],nitro:["suelo"],strepto:["suelo"],nostoc:["suelo"],tbc:["pers"],vibrio:["suelo","alim"],salmo:["anim","alim"],borde:["pers"],staph:["pers"],mutans:["pers"]};
 const CARA=[
  {k:"staph",t:"Vive en la nariz de alrededor de 3 de cada 10 personas sanas sin hacerles daño. Causa una infección solo si entra al cuerpo por una herida.",s:["<i>Staphylococcus aureus</i> enferma solo si entra al cuerpo por ","."],o:["una herida","el aire que respira","la nariz"]},
  {k:"mutans",t:"Vive en la boca de casi todas las personas. Produce caries cuando en la boca queda mucho azúcar y los dientes no se cepillan.",s:["<i>Streptococcus mutans</i> produce caries cuando hay ","."],o:["mucho azúcar y poco cepillado","mucha saliva y comidas muy frías","poca agua y mucho sol"]},
@@ -1423,7 +1426,7 @@ BIND.micro=()=>{
   z.oninput=draw;
   const num=v=>{ const x=String(v||"").replace(/[\s.]/g,"").replace(",","."); return x===""?NaN:Number(x); };
   const ta=$("microtxt"); ta.value=EXP.s1.microTxt||"";
-  const check=()=>{ if(ta.value.trim().length>=10){ EXP.s1.microTxt=ta.value.trim(); saveExp(); $("fb-micro").classList.add("show"); markOK("micro"); } };
+  const check=()=>{ EXP.s1.microTxt=ta.value.trim(); saveExp(); if(ta.value.trim().length>=25){ saveExp(); $("fb-micro").classList.add("show"); markOK("micro"); } };
   function buildR3(){
     if(built) return; built=true;
     const box=$("anrows"), pick={}, ORD=shuffle(AN.map((_,i)=>i));
@@ -1468,23 +1471,25 @@ BIND.comparar=()=>{
   if(EXP.s1.cmpOK||EXP.ok.comparar||DOC()){ box.querySelectorAll(".mrow").forEach(r=>{ const c=CMP[+r.dataset.i]; r.querySelector(`.pill[data-v="${c.a}"]`).click(); r.classList.add("correct"); }); openDif(); }
 };
 
-BIND.aliadas=()=>{
-  const box=$("alirows"), pick=Object.assign({},EXP.s1.aliadas||{}), byK=Object.fromEntries(GAL.map(g=>[g.k,g]));
-  ALI.forEach(x=>{ const g=byK[x.k]; const r=document.createElement("div"); r.className="mrow"; r.dataset.k=x.k;
-    r.innerHTML=`<span class="word"><i>${g.n}</i></span>${["alim","medic","plant"].map(v=>`<button type="button" class="pill" data-v="${v}">${ALI_NAME[v]}</button>`).join("")}<span class="alitxt">${g.i}</span>`;
-    r.querySelectorAll(".pill").forEach(b=>{ if(pick[x.k]===b.dataset.v) b.classList.add("sel"); b.onclick=()=>{ pick[x.k]=b.dataset.v; r.querySelectorAll(".pill").forEach(y=>y.classList.toggle("sel",y===b)); r.classList.remove("wrong","correct"); }; });
+BIND.habitat=()=>{
+  const box=$("habrows"), pick={}, byK=Object.fromEntries(GAL.map(g=>[g.k,g])), saved=EXP.s1.hab||{};
+  const same=(a,b)=>a.length===b.length&&a.every(x=>b.includes(x));
+  GAL_ORDER.forEach(k=>{ const g=byK[k]; pick[k]=new Set(saved[k]||[]); const r=document.createElement("div"); r.className="mrow"; r.dataset.k=k;
+    r.innerHTML=`<img class="avatar" src="assets/img/${g.img}" alt=""><span class="word" style="min-width:260px"><i>${g.n}</i><br><span style="font-weight:600;font-size:.95rem;color:var(--ink-soft)">Vive en: ${g.d}</span></span>${Object.keys(HAB_NAME).map(v=>`<button type="button" class="pill" data-v="${v}">${HAB_NAME[v]}</button>`).join("")}`;
+    r.querySelectorAll(".pill").forEach(b=>{ if(pick[k].has(b.dataset.v)) b.classList.add("sel");
+      b.onclick=()=>{ const v=b.dataset.v; if(pick[k].has(v)) pick[k].delete(v); else pick[k].add(v); b.classList.toggle("sel",pick[k].has(v)); r.classList.remove("wrong","correct"); }; });
     box.appendChild(r); });
-  const ta=$("alitxt"); ta.value=EXP.s1.aliadasTxt||"";
-  const open2=()=>{ $("after-ali").classList.add("show"); const ck=()=>{ EXP.s1.aliadasTxt=ta.value.trim(); saveExp(); if(EXP.s1.aliadasTxt.length>=15){ $("fb-ali2").classList.add("show"); markOK("aliadas"); } }; ta.oninput=ck; ck(); };
-  const judge=(silent)=>{ let bad=0,miss=0;
-    box.querySelectorAll(".mrow").forEach(r=>{ const x=ALI.find(a=>a.k===r.dataset.k); r.classList.remove("wrong","correct"); if(!pick[x.k]){miss++;return;} if(pick[x.k]===x.a) r.classList.add("correct"); else { r.classList.add("wrong"); bad++; } });
-    const f=$("fb-ali"); if(silent) return !bad&&!miss;
-    if(miss){ f.className="fb no show"; f.textContent=`Faltan ${miss} bacterias por decidir.`; return false; }
-    if(bad){ EXP.s1.aliadasErr=(EXP.s1.aliadasErr||0)+1; saveExp(); f.className="fb no show"; f.textContent=`Hay ${bad} en rojo: vuelve a leer qué hace esa bacteria y a quién le sirve lo que produce.`; return false; }
-    EXP.s1.aliadas=Object.assign({},pick); saveExp(); f.className="fb ok show"; f.textContent="✔ Bien leído: las bacterias beneficiosas trabajan para la alimentación, la salud y el suelo."; open2(); return true; };
-  $("btn-ali").onclick=()=>judge(false);
-  if(DOC()){ ALI.forEach(x=>pick[x.k]=x.a); box.querySelectorAll(".mrow").forEach(r=>r.querySelector(`.pill[data-v="${pick[r.dataset.k]}"]`).classList.add("sel")); }
-  if(EXP.ok.aliadas||DOC()||(EXP.s1.aliadas&&Object.keys(EXP.s1.aliadas).length===ALI.length)) judge(false);
+  const ta=$("habtxt"); ta.value=EXP.s1.habTxt||"";
+  const open2=()=>{ $("after-hab").classList.add("show"); const ck=()=>{ EXP.s1.habTxt=ta.value.trim(); saveExp(); if(EXP.s1.habTxt.length>=20){ $("fb-hab2").classList.add("show"); markOK("habitat"); } }; ta.oninput=ck; ck(); };
+  const judge=()=>{ let bad=0,miss=0;
+    box.querySelectorAll(".mrow").forEach(r=>{ const k=r.dataset.k; r.classList.remove("wrong","correct"); if(!pick[k].size){miss++;return;} if(same([...pick[k]],HAB[k])) r.classList.add("correct"); else { r.classList.add("wrong"); bad++; } });
+    const f=$("fb-hab");
+    if(miss){ f.className="fb no show"; f.textContent=`Faltan ${miss} bacterias por ubicar.`; return; }
+    if(bad){ if(!EXP.s1.habOK){ EXP.s1.habErr=(EXP.s1.habErr||0)+1; saveExp(); } f.className="fb no show"; f.textContent=`Hay ${bad} en rojo: vuelve a leer dónde vive esa bacteria. Puede vivir en más de un ambiente.`; return; }
+    EXP.s1.hab=Object.fromEntries(Object.entries(pick).map(([k,v])=>[k,[...v]])); EXP.s1.habOK=true; saveExp(); f.className="fb ok show"; f.textContent="✔ Bien leído: hay bacterias en casi todos los ambientes."; open2(); };
+  $("btn-hab").onclick=judge;
+  if(DOC()){ GAL_ORDER.forEach(k=>{ pick[k]=new Set(HAB[k]); }); box.querySelectorAll(".mrow").forEach(r=>r.querySelectorAll(".pill").forEach(b=>b.classList.toggle("sel",pick[r.dataset.k].has(b.dataset.v)))); }
+  if(EXP.s1.habOK||EXP.ok.habitat||DOC()) judge();
 };
 
 BIND.cara=()=>{
@@ -1523,11 +1528,7 @@ BIND.cara=()=>{
 };
 
 BIND.piezas=()=>{
-  const box=$("pzrows"), pick={}, fsel={}, byK=Object.fromEntries(GAL.map(g=>[g.k,g]));
-  shuffle(PIEZAS.map((_,i)=>i)).forEach(i=>{ const p=PIEZAS[i]; const r=document.createElement("div"); r.className="mrow"; r.dataset.i=i;
-    r.innerHTML=`<span class="word">${p.w}</span><button type="button" class="pill" data-v="todas">Está en todas las bacterias</button><button type="button" class="pill" data-v="algunas">Solo en algunas</button><span class="hint">${p.h}</span>`;
-    r.querySelectorAll(".pill").forEach(b=>b.onclick=()=>{ pick[i]=b.dataset.v; r.querySelectorAll(".pill").forEach(y=>y.classList.toggle("sel",y===b)); r.classList.remove("wrong","correct"); });
-    box.appendChild(r); });
+  const fsel={}, byK=Object.fromEntries(GAL.map(g=>[g.k,g]));
   const fc=$("flagcards");
   FLAG.forEach(x=>{ const g=byK[x.k]; const d=document.createElement("div"); d.className="fcard"; d.dataset.k=x.k;
     d.innerHTML=`<img src="assets/img/${g.img}" alt="${esc(g.n)}"><span class="nm">${g.n}</span><div class="row" style="justify-content:center"><button type="button" class="pill" data-v="si">Tiene flagelo</button><button type="button" class="pill" data-v="no">No tiene</button></div><span class="hint">${x.h}</span>`;
@@ -1535,20 +1536,13 @@ BIND.piezas=()=>{
     fc.appendChild(d); });
   const ta=$("pztxt"); ta.value=EXP.s2.piezasTxt||"";
   const open3=()=>{ $("after-flag").classList.add("show"); const ck=()=>{ EXP.s2.piezasTxt=ta.value.trim(); saveExp(); if(EXP.s2.piezasTxt.length>=15){ $("fb-pz2").classList.add("show"); markOK("piezas"); } }; ta.oninput=ck; ck(); };
-  const judgeA=()=>{ let bad=0,miss=0;
-    box.querySelectorAll(".mrow").forEach(r=>{ const i=+r.dataset.i; r.classList.remove("wrong","correct"); if(!pick[i]){miss++;return;} if(pick[i]===PIEZAS[i].a) r.classList.add("correct"); else { r.classList.add("wrong"); bad++; } });
-    const f=$("fb-pz");
-    if(miss){ f.className="fb no show"; f.textContent=`Faltan ${miss} piezas por decidir.`; return; }
-    if(bad){ EXP.s2.piezasErr=(EXP.s2.piezasErr||0)+1; saveExp(); f.className="fb no show"; f.textContent=`Hay ${bad} en rojo: lee la pista y vuelve a decidir.`; return; }
-    EXP.s2.piezasOK=true; saveExp(); f.className="fb ok show"; f.textContent="✔ Cuatro piezas que tienen todas las bacterias y cuatro que tienen solo algunas."; $("after-pz").classList.add("show"); };
   const judgeB=()=>{ let bad=0,miss=0;
     fc.querySelectorAll(".fcard").forEach(d=>{ const x=FLAG.find(a=>a.k===d.dataset.k); d.classList.remove("wrong","correct"); if(!fsel[x.k]){miss++;return;} if(fsel[x.k]===x.a) d.classList.add("correct"); else { d.classList.add("wrong"); bad++; } });
     const f=$("fb-flag");
     if(miss){ f.className="fb no show"; f.textContent=`Faltan ${miss} bacterias por decidir.`; return; }
     if(bad){ EXP.s2.flagErr=(EXP.s2.flagErr||0)+1; saveExp(); f.className="fb no show"; f.textContent=`Hay ${bad} en rojo: mira otra vez la imagen y busca filamentos largos.`; return; }
     EXP.s2.flagOK=true; saveExp(); f.className="fb ok show"; f.textContent="✔ Dos con flagelo y dos sin flagelo: el flagelo es una pieza de algunas bacterias, no de todas."; open3(); };
-  $("btn-pz").onclick=judgeA; $("btn-flag").onclick=judgeB;
-  if(EXP.s2.piezasOK||EXP.ok.piezas||DOC()){ box.querySelectorAll(".mrow").forEach(r=>{ const i=+r.dataset.i; r.querySelector(`.pill[data-v="${PIEZAS[i].a}"]`).click(); }); judgeA(); }
+  $("btn-flag").onclick=judgeB;
   if(EXP.s2.flagOK||EXP.ok.piezas||DOC()){ fc.querySelectorAll(".fcard").forEach(d=>{ d.querySelector(`.pill[data-v="${FLAG.find(a=>a.k===d.dataset.k).a}"]`).click(); }); judgeB(); }
 };
 
@@ -1763,8 +1757,10 @@ BIND.divide=()=>{
     const t=setInterval(()=>{ k++; go(); if(k>=4){ clearInterval(t); playing=false; $("btn-div").textContent="Ver de nuevo";
       if(!played){ played=true; $("after-div").classList.add("show");
         if(!$("pred").childElementCount) mcQuiz($("pred"),PRED,null,{noNum:true});
-        PRED[0].onPick=j=>{ EXP.s2.prediccion=PRED[0].o[j]; saveExp(); markOK("divide"); }; } } },1500); };
-  if(EXP.ok.divide||DOC()){ played=true; k=4; go(); $("after-div").classList.add("show"); mcQuiz($("pred"),PRED,null,{noNum:true}); PRED[0].onPick=j=>{ EXP.s2.prediccion=PRED[0].o[j]; saveExp(); }; }
+        PRED[0].onPick=j=>{ EXP.s2.prediccion=PRED[0].o[j]; saveExp(); ck(); }; } } },1500); };
+  const ta=$("biptxt"); ta.value=EXP.s2.bipTxt||"";
+  const ck=()=>{ EXP.s2.bipTxt=ta.value.trim(); saveExp(); if(EXP.s2.prediccion&&EXP.s2.bipTxt.length>=15) markOK("divide"); }; ta.oninput=ck;
+  if(EXP.ok.divide||DOC()){ played=true; k=4; go(); $("after-div").classList.add("show"); mcQuiz($("pred"),PRED,null,{noNum:true}); PRED[0].onPick=j=>{ EXP.s2.prediccion=PRED[0].o[j]; saveExp(); ck(); }; }
 };
 
 BIND.crece=()=>{
@@ -1970,24 +1966,24 @@ BIND.cierre=()=>{
 function bitData(){
   const s1=EXP.s1, s2=EXP.s2, s3=EXP.s3, ok=EXP.ok, byK=Object.fromEntries(GAL.map(g=>[g.k,g]));
   const DEC={sostengo:"la sostengo",corrijo:"la corrijo",descarto:"la descarto"};
-  const ali=s1.aliadas&&Object.keys(s1.aliadas).length===ALI.length?["alim","medic","plant"].map(v=>ALI_NAME[v]+": "+ALI.filter(x=>s1.aliadas[x.k]===v).map(x=>byK[x.k].n).join(", ")).join(" · "):"";
+  const hab=s1.habOK?Object.keys(HAB_NAME).map(v=>HAB_NAME[v]+": "+GAL_ORDER.filter(k=>HAB[k].includes(v)).map(k=>byK[k].n).join(", ")).join(" · "):"";
   const cara=s1.cara&&Object.keys(s1.cara).length===CARA.length?CARA.map(c=>["d",null,c.s[0]+c.o[s1.cara[c.k]]+c.s[1]]):[["d","Oraciones completadas",""]];
   const tries=n=>!n?" (al primer intento)":n===1?" (corrigió 1 vez antes de acertar)":" (corrigió "+n+" veces antes de acertar)";
   return [
    {e:"ETAPA 1 · QUIÉN ES",k:"s1",secs:[
     {h:"Primera teoría",it:[["d","Sospechoso",SUSP_NAME[s1.teoria]],["d","Seguridad",CONF_NAME[s1.conf]],["r","Por qué",s1.teoriaTxt]]},
-    {h:"Algo que nadie vio",it:[["d","Análisis de los cuatro aumentos (4 afirmaciones)",s1.microOK||ok.micro?"Completo"+tries(s1.microTries):""],["r","¿Por qué nadie vio a las bacterias en la mesa?",s1.microTxt]]},
+    {h:"Algo que nadie vio",it:[["d","Análisis de los cuatro aumentos (4 afirmaciones)",s1.microOK||ok.micro?"Completo"+tries(s1.microTries):""],["r","¿Por qué nadie vio a las bacterias y qué formas tenían?",s1.microTxt]]},
     {h:"Idea previa: ¿todas las bacterias enferman?",it:[["d","Mi idea",IDEA_NAME[s1.idea]],["r","Por qué",s1.ideaTxt]]},
     {h:"El fichero del laboratorio",it:[["d","Bacterias clasificadas",Object.keys(s1.gal||{}).length?Object.keys(s1.gal).length+" de 12; "+(s1.galFirst||0)+" bien al primer intento":""]]},
-    {h:"Las aliadas: a qué ayudan las bacterias beneficiosas",it:[["d","Clasificación",ali?ali+tries(s1.aliadasErr):""],["r","Las bacterias beneficiosas ayudan a las personas porque…",s1.aliadasTxt]]},
+    {h:"Dónde viven",it:[["d","Ambientes",hab?hab+tries(s1.habErr):""],["r","Qué toma la Salmonella de la ensalada y qué le devuelve",s1.habTxt]]},
     {h:"La otra cara de las que causan enfermedad",it:[...cara,["d","Lectura",ok.cara||(s1.cara&&Object.keys(s1.cara).length===CARA.length)?"seis oraciones completas"+tries(s1.caraErr):""],["d","Frente a mi idea del comienzo",DEC[s1.ideaRev]],["r","Mi prueba",s1.ideaRevTxt]]},
     {h:"La acusada de cerca",it:[["d","Comparación con la célula eucariota animal",s1.cmpOK||ok.comparar?"completa"+tries(s1.cmpTries):""],["r","Diferencia principal entre la célula procariota y la eucariota animal",s1.difTxt]]}]},
    {e:"ETAPA 2 · CÓMO FUNCIONA",k:"s2",secs:[
     {h:"Prueba nueva: Sofi también se enfermó",it:[["d","Mi teoría",DEC[s2.revision]],["r","Por qué",s2.revisionTxt]]},
     {h:"El deseo de la abuela",it:[["d","Primera partida",s2.puebloShot?"bienestar "+s2.puebloFirst+" %; borró: "+(s2.puebloShot.map(k=>byK[k].n).join(", ")||"ninguna"):""],["d","Mejor bienestar",s2.puebloBest!=null?s2.puebloBest+" %":""],["r","¿Por qué cumplir el deseo completo dejaría peor a la familia?",s2.deseoTxt]]},
     {h:"El viaje de la acusada",it:[["d","Obstáculos",ok.simbac?"cinco resueltos, con "+(s2.viajeErr||0)+" toque(s) equivocado(s)":""]]},
-    {h:"Piezas de todas, piezas de algunas",it:[["d","En todas las bacterias",s2.piezasOK?"membrana plasmática, citoplasma, ribosomas, ADN"+tries(s2.piezasErr):""],["d","Solo en algunas",s2.piezasOK?"flagelo, pili, cápsula, plásmido":""],["d","Flagelo en el fichero",s2.flagOK?"tienen Salmonella y Vibrio cholerae; no tienen Staphylococcus aureus ni Lactobacillus"+tries(s2.flagErr):""],["r","No todas las bacterias tienen las mismas piezas porque…",s2.piezasTxt]]},
-    {h:"Bipartición",it:[["d","Mi predicción para la cucharada de las 14 h",s2.prediccion?s2.prediccion+" (el simulador muestra 51.200)":""]]},
+    {h:"Piezas de todas, piezas de algunas",it:[["d","Flagelo en el fichero",s2.flagOK?"tienen Salmonella y Vibrio cholerae; no tienen Staphylococcus aureus ni Lactobacillus"+tries(s2.flagErr):""],["r","No todas las bacterias tienen las mismas piezas porque…",s2.piezasTxt]]},
+    {h:"Bipartición",it:[["r","Por qué una bacteria no necesita de otra para reproducirse",s2.bipTxt],["d","Mi predicción para la cucharada de las 14 h",s2.prediccion?s2.prediccion+" (el simulador muestra 51.200)":""]]},
     {h:"La carrera de la ensalada",it:[["d","Tabla al sol (12 h: 800 · 13 h: 6.400 · 14 h: 51.200)",ok.crece||(EXP.q.crece||[]).length?"completa"+tries(s2.tablaTries):""],["m","Pregunta","crece",CRECE_MC]]},
     {h:"¿Dónde se multiplicaron?",it:[["r","Explicación con tiempo y temperatura",s2.riesgo]]}]},
    {e:"ETAPA 3 · QUÉ PASÓ",k:"s3",secs:[
@@ -1998,9 +1994,27 @@ function bitData(){
     {h:"Consulta de la familia",it:[["m","Consulta","eval",EVAL]]},
     {h:"Cierre",it:[["d","Cómo cambió mi idea sobre las bacterias",{nada:"pienso casi lo mismo que al principio",algo:"cambié algunas ideas",mucho:"cambió mucho mi forma de verlas"}[s3.cambio]],["r","Mensaje a la familia para el próximo asado",s3.consejo]]}]}];
 }
+function conceptos(){
+  const s1=EXP.s1, s2=EXP.s2, s3=EXP.s3;
+  return [
+   {e:"LLAVE 1 · QUIÉN ES",c:[
+    {t:"Tamaño y microscopios",k:"microscópica · micrómetro (milésima de milímetro) · lupa · microscopio óptico · microscopio electrónico · bacilos, cocos y espirales",v:s1.microTxt},
+    {t:"Dónde viven y sistema abierto",k:"casi todos los ambientes · sistema abierto · toma nutrientes · devuelve desechos · libera calor (energía térmica) · Nostoc hace fotosíntesis",v:s1.habTxt},
+    {t:"Bacterias beneficiosas y bacterias que causan enfermedad",k:"beneficiosa · causa enfermedad · depende de a dónde llega, de cuántas son y de las defensas de la persona",v:s1.ideaRevTxt},
+    {t:"Célula procariota y célula eucariota animal",k:"procariota · sin núcleo · nucleoide · eucariota · unicelular · célula y organismo a la vez",v:s1.difTxt}]},
+   {e:"LLAVE 2 · CÓMO FUNCIONA",c:[
+    {t:"Importancia de las bacterias",k:"alimentos (yogur, quesos) · medicamentos (antibióticos, insulina) · suelo y plantas (nitrógeno)",v:s2.deseoTxt},
+    {t:"Partes de todas y partes de algunas",k:"en todas: membrana plasmática, citoplasma, ribosomas, ADN · en algunas: flagelo, pili, cápsula, plásmido",v:s2.piezasTxt},
+    {t:"Reproducción",k:"bipartición · dos células hijas iguales · sin pareja",v:s2.bipTxt},
+    {t:"Tiempo y temperatura",k:"calor y tiempo: se multiplican · frío: las frena · cocción: las mata",v:s2.riesgo}]},
+   {e:"LLAVE 3 · QUÉ PASÓ",c:[
+    {t:"El caso resuelto",k:"Salmonella · ensalada rusa · tabla de pruebas · análisis de laboratorio",v:s3.informe},
+    {t:"Prevención",k:"lavado de manos · cadena de frío · cocción · vacunas · cepillado",v:s3.consejo}]}];
+}
 function bitHTML(){
   const v=x=>x?esc(String(x).replace(/<[^>]+>/g,"")):"";
-  return bitData().map(E=>`<div class="bitsec"><h5>${E.e}</h5>${E.secs.map(S=>`<h6>${S.h}</h6>`+S.it.map(it=>{
+  const con=`<div class="bitsec"><h5>CONCEPTOS DEL EXPEDIENTE</h5>${conceptos().map(E=>`<h6>${E.e}</h6>`+E.c.map(c=>`<p><b>${esc(c.t)}</b> · <i>${esc(c.k)}</i></p>${c.v?`<p>${v(c.v)}</p>`:`<p class="vac">Lo que escribiste: sin completar</p>`}`).join("")).join("")}</div>`;
+  return con+bitData().map(E=>`<div class="bitsec"><h5>${E.e}</h5>${E.secs.map(S=>`<h6>${S.h}</h6>`+S.it.map(it=>{
     if(it[0]==="m"){ const a=EXP.q[it[2]]||[]; return it[3].map((q,i)=>a[i]?`<p>${esc(it[1])}${it[3].length>1?" "+(i+1):""}: ${v(q.o[a[i].p])} ${a[i].ok?"✔":"✖"}</p>`:`<p class="vac">${esc(it[1])}${it[3].length>1?" "+(i+1):""}: sin responder</p>`).join(""); }
     const val=it[2]; if(it[1]==null) return `<p>${it[2]}</p>`;
     return val?`<p>${it[1]?`<b>${esc(it[1])}:</b> `:""}${v(val)}</p>`:`<p class="vac">${it[1]||"Texto"}: sin completar</p>`; }).join("")).join("")}</div>`).join("");
@@ -2048,6 +2062,10 @@ function makePDF(fbId){
   const now=new Date();
   put("Curso: 1° "+EXP.seccion+"   ·   Fecha: "+now.toLocaleDateString("es-AR")+" "+now.toLocaleTimeString("es-AR",{hour:"2-digit",minute:"2-digit"})+"   ·   Código: "+EXP.id,{size:11,gap:2});
   const yRes=y; y+=24;
+  h2("CONCEPTOS DEL EXPEDIENTE");
+  put("Cada concepto de la secuencia, con sus palabras clave y lo que escribiste en ese paso.",{size:10.5,color:[90,90,90],gap:1.5});
+  conceptos().forEach(E=>{ h3(E.e); E.c.forEach(c=>{ put(c.t,{size:11,style:"bold",gap:.2}); put("Palabras clave: "+c.k,{size:10,color:[90,90,90],gap:.4}); resp("",c.v); }); });
+  doc.addPage(); y=M;
   bitData().forEach(E=>{
     h2(E.e+"  ("+hecho(E.k)+" · "+mins(E.k)+" min)");
     E.secs.forEach(S=>{ h3(S.h);
